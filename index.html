@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>zach (scary)</title>
+    <style>
+      html, body {
+            height: 100%;
+            margin:0;
+            padding:0;
+      }
+      div {
+          position:relative;
+          height: 100%;
+          width:100%;
+      }
+      div img {
+          position:absolute;
+          top:0;
+          left:0;
+          right:0;
+          bottom:0;
+          margin:auto;
+      }
+    </style>
+</head>
+<body style="background-color: #26241f;">
+  <div>
+    <img id="meow" src="./pics/pics/zeropointfive.png" style="height: 80vh; border-radius: 10px;";>
+  </div>
+  <button style="position: absolute; top: 10px; left: 10px;" onclick="meowINSANE()">𓃦 Max Speed𓃥</button>
+</body>
+<script>
+var links = []
+fetch("./pics/list.txt")
+  .then((res) => res.text())
+  .then((text) => {links = text.split("\n").filter(function (e) {return e})})
+function meowLoudly(id) {
+  console.log("trying to set a new meow")
+  var pic = document.getElementById(id)
+    var link = "./pics/pics/" + links[Math.floor(Math.random() * links.length)]
+    pic.src = link
+    if(pic.width > pic.height){
+        pic.style.width = "80vw";
+        pic.style.height = "";
+    } else {
+        pic.style.height = "80vh";
+        pic.style.width = "";
+    }
+}
+console.log("meowing!");
+var interval = setInterval(function() {meowLoudly("meow")}, 3000)
+function meowINSANE() {
+  clearInterval(interval);
+  var interval = setInterval(function() {meowLoudly("meow")}, 100)
+}
+</script>
+</html>
